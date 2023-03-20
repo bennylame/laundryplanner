@@ -37,13 +37,22 @@ defineEmits(['toggle-complete', 'edit-todo', 'update-todo', 'delete-todo']);
         v-if="todo.isEditing"
         icon="ant-design:check-circle-outlined"
         @click="$emit('edit-todo', index)"
+        @keydown.enter="$emit('edit-todo', index)"
+        tabindex="0"
       />
       <Icon
         v-else
         icon="ant-design:edit-outlined"
         @click="$emit('edit-todo', index)"
+        @keydown.enter="$emit('edit-todo', index)"
+        tabindex="0"
       />
-      <Icon icon="ant-design:delete-outlined" @click="$emit('delete-todo')" />
+      <Icon
+        icon="ant-design:delete-outlined"
+        @click="$emit('delete-todo')"
+        @keydown.enter="$emit('delete-todo')"
+        tabindex="0"
+      />
     </div>
   </li>
 </template>
