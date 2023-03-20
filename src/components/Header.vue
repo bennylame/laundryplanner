@@ -15,12 +15,40 @@ import { RouterLink } from 'vue-router'
     </nav>
   </header>
 </template>
-<style lang="scss">
-ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+<style lang="scss" scoped>
+header {
+  background-color: #f5f5f5;
+
+  nav {
+    display: flex;
+    align-items: center;
+    padding: 25px 16px;
+
+    .branding {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      img {
+        max-width: 50px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+    .nav-routes {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
 }
 </style>
