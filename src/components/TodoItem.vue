@@ -21,7 +21,7 @@ defineEmits(['toggle-complete', 'edit-todo', 'update-todo', 'delete-todo']);
       :checked="todo.isCompleted"
       @input="$emit('toggle-complete', index)"
     />
-    <div class="todo">
+    <div class="todo" @click="$emit('toggle-complete', index)">
       <input
         v-if="todo.isEditing"
         type="text"

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { uid } from 'uid';
 import TodoCreator from '../components/TodoCreator.vue';
 import TodoItem from '../components/TodoItem.vue';
@@ -14,6 +14,10 @@ watch(
   },
   { deep: true }
 );
+
+const todoCompleted = computed(() => {
+  return todoList.value.every((todo) => todo.isCompleted === true);
+});
 
 const fetchTodoList = () => {
   const todoListFromLocalStorage = JSON.parse(localStorage.getItem('todoList'));
@@ -70,6 +74,10 @@ const updateTodo = (todo, index) => {
       <Icon icon="noto-v1:sad-but-relieved-face" />
       <span>You have no todos to complete. Add one!</span>
     </p>
+    <p class="todos-completed" v-if="todoCompleted && todoList.length > 0">
+      <Icon icon="noto-v1:smiling-face-with-sunglasses" />
+      <span>You have completed all of your todos</span>
+    </p>
   </main>
 </template>
 
@@ -87,17 +95,20 @@ main {
     text-align: center;
   }
 
-  .todos-message {
+  .todos-message,
+  .todos-completed {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 16px;
-    opacity: 0.5;
-    transition: 250ms ease;
 
     span {
       margin-left: 8px;
     }
+  }
+
+  .todos-message {
+    opacity: 0.5;
   }
 }
 </style>
